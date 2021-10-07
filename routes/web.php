@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\TopicController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,3 +45,21 @@ Route::get('/comment/update-form/{id}', [CommentController::class, 'updateForm']
 
 Route::post('/comment/update/{id}', [CommentController::class, 'update'])->name('comment.update');
 Route::get('/comment/delete/{id}', [CommentController::class, 'delete'])->name('comment.delete');
+
+
+/* LOGIN */
+Route::get('/login', [MainController::class, 'login'])->name('main.login');
+Route::get('/register', [MainController::class, 'register'])->name('main.register');
+Route::post('/check', [MainController::class, 'check'])->name('main.check');
+
+/* LOGOUT */
+Route::get('/logout', [MainController::class, 'logout'])->name('main.logout');
+
+/* REGISTER */
+Route::post('/save-user', [MainController::class, 'saveUser'])->name('main.saveuser');
+
+/* AuthCheck Middleware */
+Route::group(['middleware' => ['AuthCheck']], function(){
+    Route::get('/dashboard', [MainController::class, 'dashboard'])->name('main.dashboard');
+});
+

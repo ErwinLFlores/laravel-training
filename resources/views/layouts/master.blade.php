@@ -28,6 +28,8 @@
 
             </ul>
         </div>
+
+
     </nav>
 
     @yield('content')

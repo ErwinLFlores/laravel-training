@@ -10,4 +10,5 @@ class Comment extends Model
     use HasFactory;
 
     protected $table = 'comments';
+
 }
